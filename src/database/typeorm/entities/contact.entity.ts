@@ -9,8 +9,8 @@ export class ContactEntity extends AbstractEntity {
   @Column({ nullable: true })
   email: string;
 
-  @ManyToOne(() => ContactEntity, (contact) => contact.id,{})
-  @JoinColumn({name:'linked_id'})
+  @ManyToOne(() => ContactEntity, (contact) => contact.id, {})
+  @JoinColumn({ name: 'linked_id' })
   linked_id: ContactEntity;
 
   @Column()
