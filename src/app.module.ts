@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import * as Joi from 'joi';
 import { ConfigModule } from '@nestjs/config';
 import { ContactModule } from './modules/contact/contact.module';
+import { CustomTypeOrmModule } from './database/typeorm/custom-typeorm.module';
 
 @Module({
   imports: [
@@ -19,10 +20,10 @@ import { ContactModule } from './modules/contact/contact.module';
         PG_SYNCHRONIZE: Joi.boolean().required(),
       }),
     }),
+    CustomTypeOrmModule,
     ContactModule,
   ],
   controllers: [],
   providers: [],
-
 })
 export class AppModule {}

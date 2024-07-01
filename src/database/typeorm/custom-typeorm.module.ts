@@ -1,11 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './entities/user.entity';
-import { OrganizationEntity } from './entities/organization.entity';
-import { ProviderEntity } from './entities/provider.entity';
-import { ReviewResponseEntity } from './entities/review-response.entity';
-import { ReviewEntity } from './entities/review.entity';
+import { ContactEntity } from './entities/contact.entity';
 
 @Module({
   imports: [
@@ -17,16 +13,10 @@ import { ReviewEntity } from './entities/review.entity';
         username: configService.get<string>('PG_USERNAME'),
         password: configService.get<string>('PG_PASS'),
         database: configService.get<string>('PG_DB_NAME'),
-        autoLoadEntities: true,
+        // autoLoadEntities: true,
         synchronize: true,
         // synchronize: configService.get<boolean>('PG_SYNCHRONIZE'),
-        entities: [
-          UserEntity,
-          OrganizationEntity,
-          ProviderEntity,
-          ReviewResponseEntity,
-          ReviewEntity,
-        ],
+        entities: [ContactEntity],
       }),
       inject: [ConfigService],
     }),

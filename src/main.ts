@@ -3,7 +3,6 @@ import { AppModule } from './app.module';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { useContainer } from 'class-validator';
-import { APP_ENV_ENUM } from './constants/app-env.enum';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -26,6 +25,8 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
 
-  await app.listen(configService.get<number>('PORT') ?? 3000);
+  await app.listen(configService.get<number>('PORT') ?? 3000).then(() => {
+    console.log(`Listening at ${configService.get<number>('PORT')}`);
+  });
 }
 bootstrap();
